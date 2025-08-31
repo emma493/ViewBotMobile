@@ -1,0 +1,5 @@
+kivy==2.1.0
+requests==2.28.1
+fake-useragent==1.4.0
+cython==0.29.33
+buildozer==1.4.0

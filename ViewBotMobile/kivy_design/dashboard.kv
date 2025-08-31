@@ -1,0 +1,185 @@
+#:import styles kivy_design.styles.MobileStyles
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+<ViewBotMobile>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: styles.SPACING['md']
+        spacing: styles.SPACING['md']
+        canvas.before:
+            Color:
+                rgba: styles.COLORS['background']
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        # Header
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            orientation: 'horizontal'
+            
+            Label:
+                text: '📱 ViewBot Mobile'
+                font_size: styles.FONT_SIZES['h1']
+                bold: True
+                color: styles.COLORS['primary']
+                size_hint_x: 0.7
+                
+            Label:
+                text: 'v1.0.0'
+                font_size: styles.FONT_SIZES['small']
+                color: styles.COLORS['text_secondary']
+                size_hint_x: 0.3
+                halign: 'right'
+
+        # Input Card
+        BoxLayout:
+            size_hint_y: None
+            height: dp(200)
+            orientation: 'vertical'
+            padding: styles.SPACING['md']
+            spacing: styles.SPACING['sm']
+            canvas.before:
+                Color:
+                    rgba: styles.COLORS['surface']
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [dp(12), dp(12), dp(12), dp(12)]
+
+            Label:
+                text: 'Target Website'
+                font_size: styles.FONT_SIZES['h3']
+                color: styles.COLORS['text_primary']
+                size_hint_y: None
+                height: dp(30)
+
+            TextInput:
+                id: url_input
+                hint_text: 'https://example.com'
+                multiline: False
+                font_size: styles.FONT_SIZES['body']
+                size_hint_y: None
+                height: dp(50)
+                padding: [dp(12), dp(12)]
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(50)
+                spacing: styles.SPACING['sm']
+
+                TextInput:
+                    id: views_input
+                    hint_text: 'Views (10-1000)'
+                    input_filter: 'int'
+                    text: '50'
+                    font_size: styles.FONT_SIZES['body']
+                    size_hint_x: 0.5
+                    padding: [dp(12), dp(12)]
+
+                TextInput:
+                    id: sessions_input
+                    hint_text: 'Sessions (1-20)'
+                    input_filter: 'int'
+                    text: '5'
+                    font_size: styles.FONT_SIZES['body']
+                    size_hint_x: 0.5
+                    padding: [dp(12), dp(12)]
+
+        # Control Card
+        BoxLayout:
+            size_hint_y: None
+            height: dp(100)
+            orientation: 'vertical'
+            padding: styles.SPACING['md']
+            spacing: styles.SPACING['sm']
+            canvas.before:
+                Color:
+                    rgba: styles.COLORS['surface']
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [dp(12), dp(12), dp(12), dp(12)]
+
+            Button:
+                id: start_btn
+                text: '🚀 START GENERATING VIEWS'
+                font_size: styles.FONT_SIZES['body']
+                bold: True
+                background_color: styles.COLORS['primary']
+                on_press: app.start_generation()
+                size_hint_y: None
+                height: dp(50)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [dp(8), dp(8), dp(8), dp(8)]
+
+            ProgressBar:
+                id: progress_bar
+                max: 100
+                value: 0
+                size_hint_y: None
+                height: dp(8)
+
+        # Log Card
+        BoxLayout:
+            orientation: 'vertical'
+            padding: styles.SPACING['md']
+            spacing: styles.SPACING['sm']
+            canvas.before:
+                Color:
+                    rgba: styles.COLORS['surface']
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [dp(12), dp(12), dp(12), dp(12)]
+
+            Label:
+                text: '📋 Activity Log'
+                font_size: styles.FONT_SIZES['h3']
+                color: styles.COLORS['text_primary']
+                size_hint_y: None
+                height: dp(30)
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                bar_width: dp(4)
+
+                Label:
+                    id: log_label
+                    text: 'Ready to generate traffic...\\n'
+                    font_size: styles.FONT_SIZES['caption']
+                    font_name: 'RobotoMono-Regular'
+                    color: styles.COLORS['text_secondary']
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    halign: 'left'
+                    valign: 'top'
+
+        # Status Bar
+        BoxLayout:
+            size_hint_y: None
+            height: dp(30)
+            orientation: 'horizontal'
+
+            Label:
+                text: 'Status: Ready'
+                font_size: styles.FONT_SIZES['small']
+                color: styles.COLORS['text_secondary']
+                size_hint_x: 0.7
+
+            Label:
+                text: 'Views: 0'
+                font_size: styles.FONT_SIZES['small']
+                color: styles.COLORS['text_secondary']
+                size_hint_x: 0.3
+                halign: 'right'
